@@ -23,6 +23,7 @@
     "discord.js": "^14.4.0",
     "dotenv": "^16.0.2",
     "glob": "^8.0.3",
-    "http2byond": "^2.2.0"
+    "http2byond": "^2.2.0",
+    "nodemon": "^2.0.20"
   }
 }
