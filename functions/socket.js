@@ -17,6 +17,10 @@ async function getStatus (connection) {
       connection.destroy();
       return { data: null, error: 'timeout' }
     };
+
+    connection.destroy();
+    console.log(err.message);
+    return { data: null, error: 'null' };
   };
 };
 
