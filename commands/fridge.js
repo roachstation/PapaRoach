@@ -2,7 +2,7 @@ const fs = require('fs');
 const Users = new Map();
 
 const Locking = new Map();
-Locking.set('status', true);
+Locking.set('status', false);
 
 exports.run = (client, message, args) => {
   if (args[0] == "unlock") {
