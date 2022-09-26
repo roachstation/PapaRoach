@@ -2,9 +2,16 @@ const fs = require('fs');
 const Users = new Map();
 
 const Locking = new Map();
-Locking.set('status', false);
+Locking.set('status', true);
 
 exports.run = (client, message, args) => {
+  if (args[0] == "unlock") {
+    if (["225984607374278667", "285124795513700352", "362674872960417804"].includes(message.author.id)) {
+      Locking.set('status', false);
+      return message.reply("You broke the lock! Thank god.");
+    };
+  };
+
   if (Locking.get('status') == true) return message.channel.send(`Our fridge is currently locked, please come later.`);
   let file = JSON.parse(fs.readFileSync('./fridge.json', 'utf-8'));
   
@@ -24,7 +31,7 @@ exports.run = (client, message, args) => {
   userData['time'] = Date.now();
 
   if (args[0] == "add" || args[0] == "put") {
-    if (!args[1]) return message.channel.send(`usage: ?fridge add <link, text, etc>`);
+    if (!args[1]) return message.channel.send(`Usage: ?fridge add <link, text, etc>`);
     if (args[1].length > 140) return message.channel.send(`It is too big for a fridge...`);
     
     let element = args.splice(1).join(" ");
