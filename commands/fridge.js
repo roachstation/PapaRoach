@@ -12,7 +12,9 @@ exports.run = (client, message, args) => {
     };
   };
 
+  if (Locking.get('status') == true && args[0] == "help") return message.channel.send('No help for you, bozo. FRIDGE IS LOCKED!!!!!');
   if (Locking.get('status') == true) return message.channel.send(`Our fridge is currently locked, please come later.`);
+  
   let file = JSON.parse(fs.readFileSync('./fridge.json', 'utf-8'));
   
   if (!Users.get(message.author.id)) Users.set(message.author.id, { usage: 0, time: Date.now(), aware: 0 });
@@ -29,6 +31,18 @@ exports.run = (client, message, args) => {
 
   userData['usage']++;
   userData['time'] = Date.now();
+
+  if (args[0] == "help") {
+    return message.channel.send(`
+?fridge add/put <item>: Puts an item to the fridge
+?fridge get: Gets an item from the fridge
+?fridge help: Check all commands
+?fridge peek: Peek the fridge
+?fridge eat: Eat an item from the fridge
+?fridge lock: Lock the fridge for 1 hrs (%5 chance)
+?fridge unlock: Forces to unlock fridge (only admin)
+`)
+  };
 
   if (args[0] == "add" || args[0] == "put") {
     if (!args[1]) return message.channel.send(`Usage: ?fridge add <link, text, etc>`);
