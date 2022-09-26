@@ -88,7 +88,6 @@ exports.run = (client, message, args) => {
 
   if (args[0] == "lock") {
     if (Locking.get(message.author.id)) return message.channel.send(`Try again in 20 minutes. :weary:`);
-    if (Locking.get('status') == true) return message.channel.send(`It is already locked, whats wrong with u?`);
 
     let chance = Math.floor(Math.random() * (100 - 1 + 1) + 1);
     if (chance < 5) {
