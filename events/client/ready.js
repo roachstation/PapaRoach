@@ -10,7 +10,7 @@ module.exports = async (client) => {
   console.log(client.user.tag, process.env.PREFIX);
 
   while (true) {
-    console.log(day().format("HH:mm:ss") + ' checking new round!');
+    // console.log(day().format("HH:mm:ss") + ' checking new round!');
     let connection = createTopicConnection({ host: process.env.HOST, port: process.env.PORT });
     let lastStatus = await getStatus(connection);
   
@@ -28,7 +28,6 @@ module.exports = async (client) => {
     };
 
     connection.destroy();
-    console.log('wait 10sec');
     await delay(1000 * 10)
   };
 };
