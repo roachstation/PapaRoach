@@ -48,6 +48,7 @@ exports.run = (client, message, args) => {
 
   if (args[0] == "add" || args[0] == "put") {
     if (!args[1]) return message.channel.send(`Usage: ?fridge add <link, text, etc>`);
+    if (message.content.match(/<@.*>/g) || message.mentions.users.size > 0 || message.mentions.roles.size > 0 || message.mentions.everyone) return message.channel.send(`No, you cant add any mentions. Sorry, troll.`)
     
     let element = args.splice(1).join(" ");
     if (element.length > 160) return message.channel.send(`It is too big for a fridge...`);
