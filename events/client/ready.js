@@ -18,7 +18,7 @@ module.exports = async (client) => {
       lastStatus = lastStatus.data;
       let lastLog = JSON.parse(fs.readFileSync('./round.json', 'utf-8'));
 
-      if (lastLog.id < lastStatus.round_id) {
+      if (lastLog.id != lastStatus.round_id) {
         lastLog['id'] = lastStatus.round_id;
         fs.writeFileSync('./round.json', JSON.stringify(lastLog, null, 2));
         
